@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homework4python-deployment
+  labels:
+    app: homework4python
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: homework4python
+  template:
+    metadata:
+      labels:
+        app: homework4python
+    spec:
+      containers:
+        - name: homework4python
+          image: homework4python
+          imagePullPolicy: Never # Use "Never" for a locally built image
+          ports:
+            - containerPort: 8080 # The port your application listens on
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: homework4python-service
+spec:
+  type: NodePort
+  selector:
+    app: homework4python
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 30007 # A port in the 30000-32767 range to access from outside

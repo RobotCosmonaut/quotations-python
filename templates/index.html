@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Inspirational Quotes</title>
+    <style>
+        body { font-family: sans-serif; }
+        .quote-card { 
+            border: 1px solid #ccc; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .quotation { font-style: italic; }
+        .attribution { text-align: right; margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Inspirational Quotes</h1>
+    {% if quotes %}
+        {% for quote in quotes %}
+            <div class="quote-card">
+                <p class="quotation">"{{ quote.quotation }}"</p>
+                <p class="attribution">&mdash; {{ quote.attribution }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No quotes found.</p>
+    {% endif %}
+</body>
+</html>
