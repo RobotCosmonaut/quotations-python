@@ -1,2 +1,34 @@
 @startuml
+title Flask Quotes Application - Request Flow
+
+actor User
+
+participant "Flask app" as App
+participant "home()" as Home
+participant "api_quotes()" as Api
+participant "get_random_quotes()" as GetQuotes
+participant "quotes.json" as QuotesFile
+participant "index.html" as Template
+
+== Route: "/" (HTML page) ==
+User -> App : HTTP GET "/"
+App -> Home : Call route handler
+Home -> GetQuotes : Call get_random_quotes()
+GetQuotes -> QuotesFile : Read file
+QuotesFile --> GetQuotes : Return data
+GetQuotes --> Home : Return 5 random quotes
+Home -> Template : Render with quotes
+Template --> Home : HTML page
+Home --> App : Return HTML response
+App --> User : Send rendered HTML
+
+== Route: "/api/quotes" (JSON API) ==
+User -> App : HTTP GET "/api/quotes"
+App -> Api : Call route handler
+Api -> GetQuotes : Call get_random_quotes()
+GetQuotes -> QuotesFile : Read file
+QuotesFile --> GetQuotes : Return data
+GetQuotes --> Api : Return 5 random quotes
+Api --> App : Return JSON response
+App --> User : Send JSON
 @enduml
