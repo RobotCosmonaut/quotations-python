@@ -1,3 +1,13 @@
+#
+#   CS 7319 Software Architecture
+#   Homework 4
+#   Kubernetes Hands-On – Minikube Deployment
+#   Ron Denny
+#   rdenny@smu.edu
+#   
+#   This script was created in Microsoft VSCode and Google Gemini was referenced/utilized in the script development
+#
+
 from flask import Flask, render_template, jsonify
 import json
 import random
