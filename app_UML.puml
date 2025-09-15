@@ -21,14 +21,4 @@ Home -> Template : Render with quotes
 Template --> Home : HTML page
 Home --> App : Return HTML response
 App --> User : Send rendered HTML
-
-== Route: "/api/quotes" (JSON API) ==
-User -> App : HTTP GET "/api/quotes"
-App -> Api : Call route handler
-Api -> GetQuotes : Call get_random_quotes()
-GetQuotes -> QuotesFile : Read file
-QuotesFile --> GetQuotes : Return data
-GetQuotes --> Api : Return 5 random quotes
-Api --> App : Return JSON response
-App --> User : Send JSON
 @enduml
